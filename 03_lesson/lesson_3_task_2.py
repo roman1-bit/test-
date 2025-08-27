@@ -10,3 +10,4 @@ smart5 = Smartphone("Tecno", "Tecno Camon 40", "+79277445115")
 catalog = [smart1, smart2, smart3, smart4, smart5]
 for smart in catalog:
     print(smart.brand, smart.model, smart.number)
+    
