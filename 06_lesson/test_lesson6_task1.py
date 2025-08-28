@@ -1,28 +1,17 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+driver.implicitly_wait(20)
 
 driver.get("http://uitestingplayground.com/ajax")
+driver.find_element(By.CSS_SELECTOR, "#ajaxButton").click()
 
-blue_button = driver.find_element(By.ID, "ajaxButton")
-blue_button.click()
+content = driver.find_element(By.ID, "content")
+txt = content.find_element(By.CLASS_NAME, "bg-success").text
 
-try:
-    element = WebDriverWait(driver, 20).until(
-        EC.presence_of_element_located((By.ID, "content"))
-    )
+print(txt)
 
-    WebDriverWait(driver, 20).until(EC.text_to_be_present_in_element
-                                    ((By.ID, "content"),
-                                     "Data loaded with AJAX get request."))
-    text = element.text
-    print(text)
-
-except Exception as e:
-    print(f"Произошла ошибка: {e}")
-
-finally:
-    driver.quit()
+driver.quit()
