@@ -14,8 +14,8 @@ class Pages:
         project = {
             'title': title
         }
-        resp = requests.post(self.url + 'api-v2/projects',
-                             json=project, headers=headers)
+        url = f"{self.url}api-v2/projects"
+        resp = requests.post(url, json=project, headers=headers)
         id_project = resp.json()
         return resp.status_code, id_project
 
@@ -27,22 +27,17 @@ class Pages:
         new_title = {
             'title': title2
         }
-        resp = requests.put(self.url + 'api-v2/projects/' + id_project,
-                            json=new_title, headers=headers)
-        resp.json()
-        id_project = resp.json()
-        return resp.status_code, id_project
+        url = f"{self.url}api-v2/projects/{id_project}"
+        resp = requests.put(url, json=new_title, headers=headers)
+        response_data = resp.json()
+        return resp.status_code, response_data
 
     def get_by_id(self, token, id_project):
         headers = {
             'Authorization': f"Bearer {token}",
             'Content-Type': 'application/json'
         }
-        resp = requests.get(self.url + 'api-v2/projects/' + id_project,
-                            headers=headers)
+        url = f"{self.url}api-v2/projects/{id_project}"
+        resp = requests.get(url, headers=headers)
         info = resp.json()
         return resp.status_code, info
-
-
-def base_url():
-    return None
