@@ -10,6 +10,7 @@ def test_calc():
     calc_page.input_field()
     calc_page.calculator_buttons()
     calc_page.output_field_result()
-    calc_page.check_result()
+    result = calc_page.get_result()
+    assert result == "15"
 
     browser.quit()

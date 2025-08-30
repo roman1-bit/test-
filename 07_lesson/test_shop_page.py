@@ -23,6 +23,7 @@ def test_shop():
     desing_page = DesingPage(browser)
     desing_page.user_fields()
     desing_page.button_continue()
-    desing_page.check_total
+    total = desing_page.get_total()
+    assert total == "Total: $58.29"
 
     browser.quit()
