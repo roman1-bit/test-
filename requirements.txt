@@ -1,0 +1,5 @@
+pytest==8.3.5
+selenium==4.33.0
+SQLAlchemy==1.4.50
+psycopg2-binary==2.9.10
+allure-pytest==2.15.0
