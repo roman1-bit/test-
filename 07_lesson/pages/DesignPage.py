@@ -21,7 +21,6 @@ class DesingPage:
             EC.presence_of_element_located((
                 By.CSS_SELECTOR, "#continue")))
 
-    def check_total(self):
-        res = self.driver.find_element(
+    def get_total(self):
+        return self.driver.find_element(
             By.CSS_SELECTOR, "div.summary_total_label").text
-        assert res == "Total: $58.29"

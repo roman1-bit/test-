@@ -36,6 +36,5 @@ class CalcPage:
             EC.text_to_be_present_in_element((
                 By.CSS_SELECTOR, ".screen"), "15"))
 
-    def check_result(self):
-        res = self.driver.find_element(By.CSS_SELECTOR, ".screen").text
-        assert res == "15"
+    def get_result(self):
+        return self.driver.find_element(By.CSS_SELECTOR, ".screen").text
